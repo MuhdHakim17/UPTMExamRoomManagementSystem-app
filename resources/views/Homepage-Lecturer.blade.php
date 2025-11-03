@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecturer Dashboard</title>
+  <style>
+    :root {
+      --bg: #f4f4f9;
+      --card: #ffffff;
+      --muted: #6b7280;
+      --text: #111827;
+      --accent: #800000;
+      --accent-2: #002147;
+      --border: #d1d5db;
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: var(--accent-2);
+      border-bottom: 2px solid var(--accent);
+      box-shadow: 0 4px 10px rgba(0,0,0,.15);
+      color: white;
+    }
+    .topbar h1 {
+      font-size: 1.4rem;
+      margin: 0;
+      font-weight: 600;
+    }
+    .topbar-buttons {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .welcome {
+      font-weight: 600;
+      color: var(--accent-2);
+      margin-right: 10px;
+      font-size: 2rem;
+    }
+    .btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.2s;
+      text-decoration: none;
+    }
+    .btn:hover { background: #660000; }
+    .dashboard {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 40px 20px;
+    }
+    .dashboard h2 {
+      font-size: 2rem;
+      color: var(--accent-2);
+      margin-bottom: 30px;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      width: 100%;
+      max-width: 800px;
+    }
+    .card {
+      background: var(--card);
+      border: 2px solid var(--accent-2);
+      border-radius: 12px;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s, background 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      background: var(--accent-2);
+      color: white;
+    }
+    .card a {
+      text-decoration: none;
+      color: inherit;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    .footer {
+      text-align: center;
+      padding: 15px;
+      background: var(--accent-2);
+      color: white;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🔝 Top bar -->
+  <div class="topbar">
+    <h1>Exam Room Management</h1>
+    <div class="topbar-buttons">
+      <a href="{{ route('lecturer.logout') }}" class="btn">Logout</a>
+    </div>
+  </div>
+
+  <!-- 🏠 Dashboard -->
+  <div class="dashboard">
+              
+
+    <div class="cards">
+      <div class="card">
+        <a href="{{ route('report.form') }}">📝 Submit Report</a>
+      </div>
+      <div class="card">
+        <a href="{{ route('display.timetable') }}">📅 View Timetable</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    © {{ date('Y') }} UPTM Exam Management System — Lecturer Portal
+  </div>
+</body>
+</html>
