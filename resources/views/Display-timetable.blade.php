@@ -6,180 +6,239 @@
   <title>Lecturer Dashboard | Display Timetable</title>
 
   <style>
-    :root {
-      --bg: #f4f4f9;
-      --card: #ffffff;
-      --muted: #6b7280;
-      --text: #111827;
-      --accent: #800000;
-      --accent-2: #002147;
-      --border: #d1d5db;
-    }
+  :root {
+    --bg-gradient: linear-gradient(135deg, #002147 0%, #800000 100%);
+    --bg: linear-gradient(135deg, #002147 0%, #800000 100%);
+    --card: #ffffffff;
+    --muted: #6b7280;
+    --text: #111827;
+    --accent: #800000;
+    --accent-2: #002147;
+    --border: #d1d5db;
+    --shadow: 0 8px 30px rgba(0,0,0,0.1);
+  }
 
-    body {
-      margin: 0;
-      font-family: system-ui, Segoe UI, Roboto, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-    }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    background: var(--bg-gradient);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    background-attachment: fixed;
+    animation: fadeIn 0.6s ease-in;
+  }
 
-    .sidebar {
-      width: 230px;
-      background: var(--accent-2);
-      color: white;
-      display: flex;
-      flex-direction: column;
-      padding: 20px 15px;
-      box-shadow: 2px 0 10px rgba(0,0,0,0.2);
-    }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
-    .sidebar h2 {
-      text-align: center;
-      font-size: 1.4rem;
-      margin-bottom: 30px;
-      border-bottom: 2px solid var(--accent);
-      padding-bottom: 10px;
-      color: var(--bg);
-    }
+  .sidebar {
+    width: 240px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    border-right: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 25px 18px;
+    box-shadow: inset -1px 0 0 rgba(255,255,255,0.1);
+  }
 
-    .sidebar a {
-      text-decoration: none;
-      color: white;
-      padding: 10px 14px;
-      border-radius: 6px;
-      margin-bottom: 8px;
-      display: block;
-      transition: background 0.2s;
-    }
+  .sidebar h2 {
+    text-align: center;
+    font-size: 1.4rem;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 10px;
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }
 
-    .sidebar a:hover { background: rgba(255,255,255,0.15); }
-    .sidebar a.active { background: var(--accent); font-weight: 600; }
+  .sidebar a {
+    text-decoration: none;
+    color: #ffffff;
+    padding: 12px 14px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: block;
+    font-weight: 500;
+    transition: all 0.25s ease;
+  }
 
-    .logout-btn {
-      background: var(--accent);
-      color: white;
-      border: none;
-      padding: 10px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: background 0.2s;
-      margin-top: auto;
-    }
+  .sidebar a:hover {
+    background: rgba(255,255,255,0.15);
+    transform: translateX(3px);
+  }
 
-    .logout-btn:hover { background: #660000; }
-    .logout-btn a { color: white; text-decoration: none; }
+  .sidebar a.active {
+    background: var(--accent);
+    font-weight: 600;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  }
 
-    .main-content { flex: 1; display: flex; flex-direction: column; }
+  .logout-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.25s ease;
+    margin-top: auto;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(128,0,0,0.3);
+  }
 
-    .topbar {
-      background: var(--card);
-      border-bottom: 1px solid var(--border);
-      padding: 14px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
+  .logout-btn:hover {
+    background: #660000;
+    transform: scale(1.03);
+  }
 
-    .topbar h1 { font-size: 1.5rem; color: var(--accent-2); margin: 0; }
+  .logout-btn a {
+    color: white;
+    text-decoration: none;
+  }
 
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 24px;
-      max-width: 1100px;
-      width: 90%;
-      margin: 30px auto;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-      overflow-x: auto;
-    }
+  .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
 
-    h2 {
-      font-size: 1.6rem;
-      color: var(--accent);
-      text-align: center;
-      margin-bottom: 20px;
-    }
+  .topbar {
+ color: (--bg);
+    padding: 18px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
 
-    .searchbar {
-      margin-bottom: 16px;
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
+  .topbar h1 {
+    font-size: 1.6rem;
+    color: var(--card);
+    margin: 0;
+    font-weight: 700;
+  }
 
-    .searchbar input {
-      width: 100%;
-      max-width: 300px;
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 10px 12px;
-      transition: all 0.2s;
-    }
+  .card {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 30px;
+    width: 90%;
+    max-width: 1150px;
+    margin: 35px auto;
+    box-shadow: var(--shadow);
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    transition: transform 0.2s ease;
+  }
 
-    .searchbar input:focus {
-      border-color: var(--accent-2);
-      box-shadow: 0 0 0 3px rgba(0,33,71,0.25);
-      outline: none;
-    }
+  .card:hover {
+    transform: translateY(-3px);
+  }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-      font-size: 0.95rem;
-    }
+  h2 {
+    font-size: 1.6rem;
+    color: var(--accent);
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
 
-    th, td {
-      padding: 12px 14px;
-      text-align: center;
-      border-bottom: 1px solid var(--border);
-      vertical-align: middle;
-    }
+  /* === TABLE STYLING UNIFIED === */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+    font-size: 0.95rem;
+    background-color: #ffffff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    overflow: hidden;
+  }
 
-    th {
-      background: var(--accent-2);
-      color: white;
-      font-weight: 600;
-    }
+  th, td {
+    padding: 12px 14px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+    background-color: #ffffff; /* unify all table backgrounds */
+  }
 
-    tr:hover td { background: rgba(29,78,216,0.08); }
+  th {
+    background: var(--accent-2);
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
 
-    .footer {
-      text-align: center;
-      padding: 15px;
-      background: var(--accent-2);
-      color: white;
-      font-size: 0.9rem;
-      margin-top: auto;
-    }
+  tr:hover td {
+    background: rgba(0,33,71,0.08); /* subtle navy hover */
+  }
 
-    @media (max-width: 768px) {
-      .sidebar { display: none; }
-      .main-content { width: 100%; }
-    }
+  a[href*="download"] {
+    background: var(--accent);
+    color: white !important;
+    padding: 10px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 10px rgba(128,0,0,0.2);
+  }
 
-    /* view-only tables */
-    #personalTimetable,
-    #globalTimetable {
-      pointer-events: none;
-      user-select: none;
-      cursor: default;
-    }
+  a[href*="download"]:hover {
+    background: #660000;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(128,0,0,0.3);
+  }
 
-    #personalTimetable td,
-    #personalTimetable th,
-    #globalTimetable td,
-    #globalTimetable th {
-      background-clip: padding-box;
-    }
-  </style>
+  .footer {
+    text-align: center;
+    padding: 18px;
+    background: var(--accent-2);
+    color: white;
+    font-size: 0.9rem;
+    margin-top: auto;
+    letter-spacing: 0.3px;
+  }
+
+  @media (max-width: 768px) {
+    .sidebar { display: none; }
+    .main-content { width: 100%; border-radius: 0; }
+    .card { padding: 20px; width: 95%; }
+    th, td { font-size: 0.85rem; padding: 8px; }
+  }
+
+  /* view-only tables */
+  #personalTimetable,
+  #globalTimetable {
+    pointer-events: none;
+    user-select: none;
+    cursor: default;
+  }
+
+  #personalTimetable td,
+  #personalTimetable th,
+  #globalTimetable td,
+  #globalTimetable th {
+    background-clip: padding-box;
+  }
+</style>
+
 </head>
 
 <body>

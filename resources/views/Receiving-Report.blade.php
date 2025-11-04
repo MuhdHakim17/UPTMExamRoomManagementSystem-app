@@ -7,16 +7,18 @@
 
   <style>
     :root {
-      --bg: #f4f4f9;
+      --bg: linear-gradient(135deg, #002147 0%, #800000 100%);
       --card: #ffffff;
       --muted: #6b7280;
       --text: #111827;
-      --accent: #800000;   /* UPTM Red */
-      --accent-2: #002147; /* UPTM Blue */
+      --accent: #800000;
+      --accent-2: #002147;
       --border: #d1d5db;
       --ring: #800000;
     }
+
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: "Segoe UI", Roboto, Arial, sans-serif;
@@ -26,26 +28,192 @@
       height: 100vh;
       overflow: hidden;
     }
-    .sidebar { width: 250px; background: var(--accent-2); color: white; display: flex; flex-direction: column; padding: 20px 0; box-shadow: 4px 0 10px rgba(0,0,0,0.2); }
-    .sidebar h2 { text-align: center; margin-bottom: 30px; font-size: 1.4rem; color: #fff; border-bottom: 2px solid var(--accent); padding-bottom: 10px; }
-    .sidebar a { text-decoration: none; color: white; padding: 12px 25px; display: block; font-weight: 500; transition: all 0.2s ease; }
-    .sidebar a:hover { background: var(--accent); }
-    .sidebar a.active { background: var(--accent); font-weight: 600; }
-    .sidebar .logout { margin-top: auto; background: var(--accent); text-align: center; padding: 12px; border-top: 1px solid rgba(255,255,255,0.2); }
-    .sidebar .logout a { color: white; text-decoration: none; font-weight: 600; }
-    .main-content { flex: 1; display: flex; flex-direction: column; overflow-y: auto; padding: 40px; }
-    .topbar { background: var(--card); border-bottom: 1px solid var(--border); padding: 14px 25px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-    .topbar h1 { font-size: 1.5rem; color: var(--accent-2); margin: 0; }
-    .container { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 30px; max-width: 1000px; width: 100%; box-shadow: 0 6px 25px rgba(0,0,0,.1); margin: 40px auto; }
-    h2 { text-align: center; color: var(--accent-2); margin-bottom: 25px; }
-    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-    th, td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border); }
-    th { background: var(--accent-2); color: white; }
-    tr:hover td { background: rgba(128, 0, 0, 0.05); }
-    .btn-accept { background: #16a34a; color: white; padding: 6px 10px; border-radius:6px; border:none; cursor:pointer; font-weight:600; }
-    .btn-remove { background: #dc2626; color: white; padding: 6px 10px; border-radius:6px; border:none; cursor:pointer; font-weight:600; }
-    .status-pending { color: #b45309; font-weight: bold; }
-    .status-accepted { color: #16a34a; font-weight: bold; }
+
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
+      background:(--bg);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      padding: 20px 0;
+      
+    }
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 1.4rem;
+      color: #fff;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 10px;
+    }
+    .sidebar a {
+      text-decoration: none;
+      color: white;
+      padding: 12px 25px;
+      display: block;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+    .sidebar a:hover {
+      background: var(--accent);
+    }
+    .sidebar a.active {
+      background: var(--accent);
+      font-weight: 600;
+    }
+    .sidebar .logout {
+      margin-top: auto;
+      background: var(--accent);
+      text-align: center;
+      padding: 12px;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+    .sidebar .logout a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* Main content */
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      padding: 40px;
+    }
+
+    .topbar {
+     
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      border-radius: 8px;
+    }
+
+    .topbar h1 {
+      font-size: 1.6rem;
+      color: var(--card);
+      margin: 0;
+      font-weight: 700;
+     
+    }
+
+    /* Container (card style) */
+    .container {
+      background: var(--card);
+      border: 2px solid var(--accent-2);
+      border-radius: 16px;
+      padding: 30px;
+      max-width: 1000px;
+      width: 100%;
+      box-shadow: 0 8px 25px rgba(0,0,0,.2);
+      margin: 40px auto;
+      transition: transform 0.2s ease;
+    }
+
+    .container:hover {
+      transform: translateY(-3px);
+    }
+
+    h2 {
+      text-align: center;
+      color: var(--accent-2);
+      margin-bottom: 25px;
+      font-size: 1.8rem;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+
+    /* Table styling */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+
+    th {
+      background: var(--accent-2);
+      color: white;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    tr:nth-child(even) td {
+      background: #f9fafb;
+    }
+
+    tr:hover td {
+      background: rgba(128, 0, 0, 0.08);
+      transition: background 0.2s;
+    }
+
+    /* Buttons */
+    .btn-accept {
+      background: #16a34a;
+      color: white;
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .btn-accept:hover {
+      background: #15803d;
+    }
+
+    .btn-remove {
+      background: #dc2626;
+      color: white;
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .btn-remove:hover {
+      background: #b91c1c;
+    }
+
+    /* Status badges */
+    .status-pending {
+      color: #b45309;
+      font-weight: bold;
+    }
+    .status-accepted {
+      color: #16a34a;
+      font-weight: bold;
+    }
+
+    /* Alert messages */
+    .alert-success {
+      background: #dcfce7;
+      color: #166534;
+      padding: 10px 15px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .alert-error {
+      background: #fee2e2;
+      color: #991b1b;
+      padding: 10px 15px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
   </style>
 </head>
 <body>
@@ -70,14 +238,10 @@
       <h2>Received Reports</h2>
 
       @if(session('success'))
-        <div style="background:#dcfce7;color:#166534;padding:10px 15px;border-radius:8px;margin-bottom:10px;">
-          {{ session('success') }}
-        </div>
+        <div class="alert-success">{{ session('success') }}</div>
       @endif
       @if(session('error'))
-        <div style="background:#fee2e2;color:#991b1b;padding:10px 15px;border-radius:8px;margin-bottom:10px;">
-          {{ session('error') }}
-        </div>
+        <div class="alert-error">{{ session('error') }}</div>
       @endif
 
       <table>
@@ -116,7 +280,6 @@
               @endif
             </td>
             <td style="white-space:nowrap;">
-              <!-- Accept form (POST) -->
               @if(!isset($report->status) || $report->status !== 'Accepted')
                 <form method="POST" action="{{ route('receiving.report.accept', $report->id) }}" style="display:inline;">
                   @csrf
@@ -124,7 +287,6 @@
                 </form>
               @endif
 
-              <!-- Remove form (DELETE) -->
               <form method="POST" action="{{ route('receiving.report.remove', $report->id) }}" style="display:inline;">
                 @csrf
                 @method('DELETE')

@@ -6,7 +6,7 @@
   <title>Admin Dashboard</title>
   <style>
     :root {
-      --bg: #f4f4f9;
+      --bg: linear-gradient(135deg, #002147 0%, #800000 100%);
       --card: #ffffff;
       --muted: #6b7280;
       --text: #111827;
@@ -25,15 +25,15 @@
       flex-direction: column;
     }
 
-    /* Topbar */
+    /* 🔹 Topbar */
     .topbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 12px 20px;
-      background: var(--accent-2);
+      background: rgba(0, 33, 71, 0.95);
       border-bottom: 2px solid var(--accent);
-      box-shadow: 0 4px 10px rgba(0,0,0,.15);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, .3);
       color: white;
     }
     .topbar h1 {
@@ -44,6 +44,7 @@
     .topbar-buttons {
       display: flex;
       gap: 10px;
+      align-items: center;
     }
     .btn {
       background: var(--accent);
@@ -60,27 +61,30 @@
       background: #660000;
     }
 
-    /* Dashboard section */
+    /* 🔹 Dashboard section */
     .dashboard {
       flex-grow: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: flex-start;
       padding: 40px 20px;
     }
+
     .dashboard h2 {
       font-size: 2rem;
-      color: var(--accent-2);
+      color: white;
       margin-bottom: 30px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
     }
 
-    /* Cards grid */
+    /* 🔹 Cards grid */
     .cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 25px;
       width: 100%;
-      max-width: 1000px;
+      max-width: 800px;
     }
 
     .card {
@@ -89,27 +93,33 @@
       border-radius: 12px;
       padding: 30px 20px;
       text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: transform 0.2s, background 0.2s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
     }
+
     .card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-6px);
       background: var(--accent-2);
       color: white;
     }
+
     .card a {
       text-decoration: none;
       color: inherit;
       font-weight: 600;
       font-size: 1.1rem;
     }
+
+    /* 🔹 Footer */
     .footer {
       text-align: center;
       padding: 15px;
-      background: var(--accent-2);
+      background: rgba(0, 33, 71, 0.95);
       color: white;
       font-size: 0.9rem;
       margin-top: auto;
+      border-top: 2px solid var(--accent);
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
     }
   </style>
 </head>
@@ -148,3 +158,4 @@
 
 </body>
 </html>
+    

@@ -6,7 +6,7 @@
   <title>Admin Login | UPTM</title>
   <style>
     :root {
-      --bg: #f4f4f9;
+      --bg: linear-gradient(135deg, #002147 0%, #800000 100%);
       --card: #ffffff;
       --muted: #6b7280;
       --text: #111827;
@@ -25,79 +25,94 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      background-attachment: fixed;
     }
 
     .card {
       background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 40px 30px;
+      border-radius: 20px;
+      padding: 45px 40px;
       width: 100%;
-      max-width: 380px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+      max-width: 400px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
       text-align: center;
-      transition: all 0.3s ease;
+      animation: fadeIn 0.7s ease-in-out;
     }
 
-    .card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 14px 40px rgba(0,0,0,0.15);
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    h1 {
-      color: var(--accent);
-      font-size: 1.7rem;
-      margin-bottom: 20px;
+    .card h1:first-child {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--accent-2);
+      margin-bottom: 5px;
       letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .card h1:last-of-type {
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-bottom: 25px;
+      font-weight: 700;
     }
 
     input {
-      width: 100%;
-      padding: 12px 14px;
+      width: 90%;
+      padding: 14px 16px;
       margin-bottom: 18px;
       border-radius: 10px;
       border: 1px solid var(--border);
       background: var(--input-bg);
       font-size: 1rem;
       color: var(--text);
-      transition: border 0.2s, box-shadow 0.2s;
+      transition: all 0.25s ease;
     }
 
     input:focus {
       border-color: var(--ring);
-      box-shadow: 0 0 0 3px rgba(128,0,0,.25);
+      box-shadow: 0 0 0 4px rgba(128,0,0,.25);
       outline: none;
+      background: #fff;
     }
 
     button {
       width: 100%;
-      padding: 12px;
+      padding: 14px;
       border: none;
       border-radius: 10px;
       background: var(--accent-2);
       color: #fff;
-      font-size: 1rem;
+      font-size: 1.05rem;
       font-weight: 600;
+      letter-spacing: 0.5px;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0,33,71,0.3);
     }
 
     button:hover {
       background: #001a3d;
-      transform: translateY(-1px);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,33,71,0.4);
     }
 
     .error {
       color: #b91c1c;
       background: #fee2e2;
-      padding: 10px;
+      padding: 12px;
       border-radius: 8px;
       margin-bottom: 15px;
       font-size: 0.9rem;
+      border-left: 4px solid #dc2626;
+      text-align: left;
     }
 
     .switch {
-      margin-top: 18px;
+      margin-top: 22px;
       font-size: 0.9rem;
       color: var(--muted);
     }
@@ -106,15 +121,27 @@
       color: var(--accent);
       font-weight: 600;
       text-decoration: none;
+      transition: color 0.2s;
     }
 
     .switch a:hover {
+      color: var(--accent-2);
       text-decoration: underline;
+    }
+
+    /* Subtle logo or branding area */
+    .logo {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 15px;
+      background-size: contain;
+      opacity: 0.85;
     }
   </style>
 </head>
 <body>
   <div class="card">
+    <div class="logo"></div>
     <h1>Exam Room Management</h1>
     <h1>Admin Login</h1>
 

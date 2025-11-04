@@ -7,108 +7,239 @@
 
   <style>
     :root {
-      --bg: #f4f4f9;
-      --card: #ffffff;
+      --bg-gradient: linear-gradient(135deg, #002147 0%, #800000 100%);
+      --card: #ffffffff;
       --muted: #6b7280;
       --text: #111827;
       --accent: #800000;
       --accent-2: #002147;
       --border: #d1d5db;
+      --shadow: 0 8px 25px rgba(0,0,0,0.15);
     }
-
-    * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      font-family: "Segoe UI", Roboto, Arial, sans-serif;
-      background: var(--bg);
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      background: var(--bg-gradient);
       color: var(--text);
       display: flex;
-      height: 100vh;
-      overflow: hidden;
+      min-height: 100vh;
+      background-attachment: fixed;
+      animation: fadeIn 0.6s ease-in; /* ✨ added smooth fade-in like timetable */
     }
 
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Sidebar */
     .sidebar {
-      width: 250px;
-      background: var(--accent-2);
+      width: 240px;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+      border-right: 1px solid rgba(255,255,255,0.2);
       color: white;
       display: flex;
       flex-direction: column;
-      padding: 20px 0;
-      box-shadow: 4px 0 10px rgba(0,0,0,0.2);
+      padding: 25px 18px;
+      box-shadow: inset -1px 0 0 rgba(255,255,255,0.1);
+      animation: fadeIn 0.8s ease-in; /* ✨ animate sidebar as well */
     }
 
     .sidebar h2 {
       text-align: center;
-      margin-bottom: 30px;
       font-size: 1.4rem;
-      color: #fff;
+      margin-bottom: 30px;
       border-bottom: 2px solid var(--accent);
       padding-bottom: 10px;
+      color: #ffffff;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
     }
 
     .sidebar a {
       text-decoration: none;
-      color: white;
-      padding: 12px 25px;
+      color: #ffffff;
+      padding: 12px 14px;
+      border-radius: 8px;
+      margin-bottom: 10px;
       display: block;
       font-weight: 500;
-      transition: all 0.2s ease;
+      transition: all 0.25s ease;
     }
 
-    .sidebar a:hover { background: var(--accent); }
-    .sidebar a.active { background: var(--accent); font-weight: 600; }
-    .sidebar .logout { margin-top: auto; background: var(--accent); text-align: center; padding: 12px; border-top: 1px solid rgba(255,255,255,0.2); }
-    .sidebar .logout a { color: white; text-decoration: none; font-weight: 600; }
+    .sidebar a:hover {
+      background: rgba(255,255,255,0.15);
+      transform: translateX(3px);
+    }
 
+    .sidebar a.active {
+      background: var(--accent);
+      font-weight: 600;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+
+    .sidebar .logout {
+      margin-top: auto;
+      background: var(--accent);
+      text-align: center;
+      padding: 12px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(128,0,0,0.3);
+      transition: all 0.3s ease;
+    }
+
+    .sidebar .logout:hover {
+      background: #660000;
+      transform: scale(1.03);
+    }
+
+    .sidebar .logout a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* Main content area */
     .main-content {
       flex: 1;
       display: flex;
       flex-direction: column;
       overflow-y: auto;
-      padding: 40px;
+      background: var(--bg-gradient);
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+      box-shadow: var(--shadow);
+      animation: fadeIn 0.8s ease-in; /* ✨ animate main content */
     }
 
+    /* Topbar */
     .topbar {
-      background: var(--card);
-      border-bottom: 1px solid var(--border);
-      padding: 14px 25px;
+     color: (--bg-gradient);
+      padding: 18px 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
 
+    .topbar h1 {
+      font-size: 1.6rem;
+      color: var(--card);
+      margin: 0;
+      font-weight: 700;
+    }
+
+    /* Card containers */
     .container {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 16px;
+      border-radius: 20px;
       padding: 30px;
-      max-width: 1000px;
-      width: 100%;
-      box-shadow: 0 6px 25px rgba(0,0,0,.1);
-      margin: 40px auto;
+      width: 90%;
+      max-width: 1100px;
+      margin: 35px auto;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      animation: fadeIn 1s ease-in; /* ✨ container fade-in effect */
     }
 
-    h2 { text-align: center; color: var(--accent-2); margin-bottom: 25px; }
-    label { display: block; margin-bottom: 6px; color: var(--muted); font-weight: 500; }
+    .container:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: var(--accent);
+      margin-bottom: 25px;
+      font-weight: 700;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
     input, select, textarea {
-      width: 100%; padding: 10px; margin-bottom: 15px;
-      border-radius: 8px; border: 1px solid var(--border); font-size: 1rem;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-size: 1rem;
+      background-color: #ffffff;
     }
 
     button {
-      background: var(--accent); color: white; border: none;
-      border-radius: 10px; padding: 10px 20px; cursor: pointer; font-weight: 600;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 12px rgba(128,0,0,0.25);
     }
 
-    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-    th, td { padding: 10px; border-bottom: 1px solid var(--border); text-align: center; }
-    th { background: var(--accent-2); color: white; }
-    tr:nth-child(even) { background: #f9fafb; }
-    .status-pending { color: #b45309; font-weight: bold; }
-    .status-accepted { color: #16a34a; font-weight: bold; }
+    button:hover {
+      background: #660000;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(128,0,0,0.35);
+    }
 
+    /* Table Styling */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    th, td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+      background-color: #ffffff;
+    }
+
+    th {
+      background: var(--accent-2);
+      color: white;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    tr:hover td {
+      background: rgba(0,33,71,0.08);
+    }
+
+    .status-pending {
+      color: #b45309;
+      font-weight: bold;
+    }
+
+    .status-accepted {
+      color: #16a34a;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main-content { width: 100%; border-radius: 0; }
+      .container { width: 95%; padding: 20px; }
+      th, td { font-size: 0.85rem; padding: 8px; }
+    }
   </style>
 </head>
 

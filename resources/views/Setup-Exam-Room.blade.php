@@ -7,21 +7,20 @@
 
   <style>
     :root {
-      --bg: #f4f4f9;
+      --bg: linear-gradient(135deg, #002147 0%, #800000 100%);
       --card: #ffffff;
       --muted: #6b7280;
       --text: #111827;
-      --accent: #800000;   /* UPTM Red */
+      --accent: #800000;   /* UPTM Maroon */
       --accent-2: #002147; /* UPTM Blue */
       --border: #d1d5db;
-      --ring: #800000;
     }
 
     * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      font-family: system-ui, Segoe UI, Roboto, Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
       display: flex;
@@ -32,7 +31,7 @@
     /* Sidebar */
     .sidebar {
       width: 250px;
-      background: var(--accent-2);
+      background:(--bg);
       color: white;
       display: flex;
       flex-direction: column;
@@ -58,13 +57,10 @@
       transition: all 0.2s ease;
     }
 
-    .sidebar a:hover {
-      background: var(--accent);
-    }
-
+    .sidebar a:hover,
     .sidebar a.active {
       background: var(--accent);
-      font-weight: 600;
+      color: #fff;
     }
 
     .sidebar .logout {
@@ -83,19 +79,19 @@
 
     /* Topbar */
     .topbar {
-      background: var(--card);
-      border-bottom: 1px solid var(--border);
+     
       padding: 14px 25px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      color: white;
+      
     }
 
-    .topbar h1 {
+    .h1 {
       font-size: 1.5rem;
-      color: var(--accent-2);
       margin: 0;
+      font-weight: 600;
     }
 
     /* Main content */
@@ -104,24 +100,32 @@
       display: flex;
       flex-direction: column;
       overflow-y: auto;
+      background: var(--bg);
       padding: 40px;
     }
 
     .container {
       background: var(--card);
-      border: 1px solid var(--border);
+      border: 2px solid var(--accent-2);
       border-radius: 20px;
       padding: 35px;
       max-width: 1000px;
       width: 125%;
-      box-shadow: 0 6px 25px rgba(0,0,0,.1);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       margin: 0 auto;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .container:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
     }
 
     h2 {
       text-align: center;
       color: var(--accent-2);
       margin-bottom: 25px;
+      font-weight: 700;
     }
 
     label {
@@ -141,8 +145,8 @@
     }
 
     input:focus, select:focus {
-      border-color: var(--ring);
-      box-shadow: 0 0 0 3px rgba(128,0,0,.2);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(128,0,0,0.15);
       outline: none;
     }
 
@@ -155,7 +159,7 @@
 
     button {
       border: none;
-      border-radius: 10px;
+      border-radius: 8px;
       padding: 10px 20px;
       cursor: pointer;
       font-weight: 600;
@@ -182,13 +186,13 @@
     }
 
     table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 30px;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
 
     th, td {
       padding: 12px;
@@ -199,6 +203,11 @@
     th {
       background: var(--accent-2);
       color: white;
+      font-weight: 600;
+    }
+
+    tr:hover td {
+      background: #f9fafb;
     }
 
     .btn-edit {
@@ -208,6 +217,7 @@
       padding: 6px 10px;
       border-radius: 6px;
       cursor: pointer;
+      transition: 0.2s;
     }
 
     .btn-delete {
@@ -217,6 +227,7 @@
       padding: 6px 10px;
       border-radius: 6px;
       cursor: pointer;
+      transition: 0.2s;
     }
 
     .btn-edit:hover { background: #d97706; }
@@ -225,7 +236,7 @@
     @media (max-width: 800px) {
       .sidebar { width: 200px; }
       .main { padding: 20px; }
-      .container { padding: 25px; }
+      .container { padding: 25px; width: 100%; }
     }
   </style>
 </head>
@@ -248,10 +259,10 @@
       <h1>UPTM Exam Timetable</h1>
     </div>
 
-  <div class="container">
+    <div class="container">
       <h2>Setup Exam Room</h2>
 
-      {{-- Original Form (unchanged) --}}
+      {{-- Form Section --}}
       <form id="room-form" method="POST" action="{{ route('examroom.store') }}">
         @csrf
         <input type="hidden" name="id" id="room-id">
@@ -271,7 +282,7 @@
         </div>
       </form>
 
-      {{-- Original Table (unchanged) --}}
+      {{-- Table Section --}}
       <table>
         <thead>
           <tr>
