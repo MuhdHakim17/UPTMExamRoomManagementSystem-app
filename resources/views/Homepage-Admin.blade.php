@@ -31,9 +31,8 @@
       justify-content: space-between;
       align-items: center;
       padding: 12px 20px;
-      background: rgba(0, 33, 71, 0.95);
-      border-bottom: 2px solid var(--accent);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, .3);
+color: (--bg);     
+     
       color: white;
     }
     .topbar h1 {
@@ -118,7 +117,7 @@
       color: white;
       font-size: 0.9rem;
       margin-top: auto;
-      border-top: 2px solid var(--accent);
+   
       box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
     }
   </style>
@@ -129,7 +128,7 @@
   <div class="topbar">
     <h1>Exam Room Management</h1>
     <div class="topbar-buttons">
-      <a href="{{ route('admin.homepage') }}" class="btn">Home</a>
+     
       <a href="{{ route('admin.logout') }}" class="btn">Logout</a>
     </div>
   </div>

@@ -44,7 +44,7 @@
       margin-bottom: 30px;
       font-size: 1.4rem;
       color: #fff;
-      border-bottom: 2px solid var(--accent);
+    
       padding-bottom: 10px;
     }
     .sidebar a {

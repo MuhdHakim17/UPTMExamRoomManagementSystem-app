@@ -36,21 +36,20 @@
 
   .sidebar {
     width: 240px;
-    background: rgba(255,255,255,0.08);
-    backdrop-filter: blur(10px);
-    border-right: 1px solid rgba(255,255,255,0.2);
+    
+   color: (--bg);
+    
     color: white;
     display: flex;
     flex-direction: column;
     padding: 25px 18px;
-    box-shadow: inset -1px 0 0 rgba(255,255,255,0.1);
+    
   }
 
   .sidebar h2 {
     text-align: center;
     font-size: 1.4rem;
-    margin-bottom: 30px;
-    border-bottom: 2px solid var(--accent);
+   
     padding-bottom: 10px;
     color: #ffffff;
     text-shadow: 0 1px 2px rgba(0,0,0,0.3);
