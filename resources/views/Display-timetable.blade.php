@@ -275,7 +275,7 @@
                 @endif
 
                 @if (!$printedDate)
-                  <td rowspan="{{ $totalRows }}">{{ \Carbon\Carbon::parse($timetable->exam_date)->format('l, Y-m-d') }}</td>
+                  <td rowspan="{{ $totalRows }}">{{ \Carbon\Carbon::parse($timetable->exam_date)->format('l, d-m-Y') }}</td>
                   @php $printedDate = true; @endphp
                 @endif
 
@@ -381,7 +381,7 @@
                   @endif
 
                   @if (!$printedDate)
-                    <td rowspan="{{ $totalRows }}">{{ \Carbon\Carbon::parse($timetable->exam_date)->format('l, Y-m-d') }}</td>
+                    <td rowspan="{{ $totalRows }}">{{ \Carbon\Carbon::parse($timetable->exam_date)->format('l, d-m-Y') }}</td>
                     @php $printedDate = true; @endphp
                   @endif
 
